@@ -1,11 +1,13 @@
-# NvChad-lua-configs
+# NvChad lua configs
 
-My custom configs for the NVChad custom configuration folder.
+[NvChad](https://nvchad.com/)
+
+Custom configs for the NVChad custom configuration folder.
 
 clone repo and name folder name to custom, cos that's what NvChad is looking for.
 
 ```bash
-git clone git@github.com:mannuelf/NvChad-lua-configs.git config
+git clone git@github.com:mannuelf/NvChad-lua-configs.git custom
 ```
 
 symlink
