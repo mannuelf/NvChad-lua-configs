@@ -2,7 +2,7 @@ local plugins = {
   {
   'wakatime/vim-wakatime',
     config = function()
-      vim.g.wakatime_api_key = 'waka_6e907439-4fdb-4648-8e72-6017c615e4aa'
+      vim.g.wakatime_api_key = ''
       vim.g.wakatime_python = '/usr/bin/python'
     end
   },

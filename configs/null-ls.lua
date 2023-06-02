@@ -6,14 +6,12 @@ local lint = null_ls.builtins.diagnostics
 local sources = {
   formatting.prettier,
   formatting.stylua,
-  formatting.svelte.with {
-    command = "prettier",
-    args = { "--stdin-filepath", "$FILENAME" },
-  },
+  formatting.svelte,
   formatting.typescript,
   formatting.html,
   formatting.javascript,
   formatting.lua,
+  formatting.dart,
 
   lint.shellcheck,
 }
