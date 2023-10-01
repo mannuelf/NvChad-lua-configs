@@ -1,22 +1,30 @@
 local null_ls = require "null-ls"
-
-local formatting = null_ls.builtins.formatting
-local lint = null_ls.builtins.diagnostics
+local b = null_ls.builtins
 
 local sources = {
-  formatting.prettier,
-  formatting.stylua,
-  formatting.svelte,
-  formatting.typescript,
-  formatting.html,
-  formatting.javascript,
-  formatting.lua,
-  formatting.dart,
+  -- webdev stuff
+  b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
+  b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
 
-  lint.shellcheck,
+  -- Lua
+  b.formatting.stylua,
+
+  -- cpp
+  b.formatting.clang_format,
+
+  b.diagnostics.eslint,
 }
+
 
 null_ls.setup {
   debug = true,
   sources = sources,
 }
+
+-- Additional on_attach configuration
+vim.api.nvim_exec([[
+  augroup LspFormatting
+    autocmd! * <buffer>
+    autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+  augroup END
+]], false)

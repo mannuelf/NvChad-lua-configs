@@ -13,5 +13,5 @@ git clone git@github.com:mannuelf/NvChad-lua-configs.git custom
 symlink
 
 ```bash
-ln -s $HOME/workspace/custom $HOME/.config/nvim/lua/
+ln -s $HOME/workspace/NvChad-lua-configs $HOME/.config/nvim/lua
 ```
