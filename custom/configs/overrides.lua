@@ -12,6 +12,7 @@ M.treesitter = {
     "c",
     "markdown",
     "markdown_inline",
+    "svelte",
   },
   indent = {
     enable = true,
@@ -31,6 +32,7 @@ M.mason = {
     "stylua",
 
     -- web dev stuff
+    "svelte-language-server",
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
@@ -41,7 +43,6 @@ M.mason = {
     -- c/cpp stuff
     "clangd",
     "clang-format",
-
   },
 }
 
