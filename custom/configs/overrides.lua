@@ -12,7 +12,6 @@ M.treesitter = {
     "c",
     "markdown",
     "markdown_inline",
-    "svelte",
   },
   indent = {
     enable = true,
@@ -63,4 +62,3 @@ M.nvimtree = {
 }
 
 return M
-
