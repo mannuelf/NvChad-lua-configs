@@ -37,7 +37,7 @@ lspconfig.svelte.setup({
 lspconfig.tailwindcss.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "tailwindcss-language-server", "--stdio" },
+  cmd = { "~/.local/share/pnpm/global/5/node_modules/@tailwindcss/language-server/bin/", "--stdio" },
   filetypes = {
     "aspnetcorerazor", "astro", "astro-markdown", "blade", "clojure", "django-html",
     "htmldjango", "edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml",
@@ -75,7 +75,7 @@ lspconfig.tailwindcss.setup {
 }
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "svelte-language-server", "tailwindcss" }
+local servers = { "html", "cssls", "tsserver", "clangd"}
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
