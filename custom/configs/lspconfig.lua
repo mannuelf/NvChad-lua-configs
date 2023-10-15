@@ -2,6 +2,7 @@ local lspconfig = require("lspconfig")
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 local util = require("lspconfig/util")
+local null_ls = require "null-ls"
 
 local function organize_imports()
 	local params = {
@@ -27,8 +28,18 @@ lspconfig.tsserver.setup({
 	},
 })
 
+lspconfig.svelte.setup {
+	on_attach = function(client, bufnr)
+		null_ls.setup {
+			on_attach = function()
+				client.resolved_capabilities.document_formatting = true
+				client.resolved_capabilities.document_range_formatting = true
+			end,
+		}
+	end,
+}
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd" }
+local servers = { "html", "cssls", "clangd" }
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
