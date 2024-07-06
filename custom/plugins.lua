@@ -201,6 +201,14 @@ local plugins = {
       table.insert(M.sources, { name = "crates" })
       return M
     end,
+  },
+  {
+    'nvim-neotest/nvim-nio',
+    dependencies = {'mfussenegger/nvim-dap'}
+  },
+  {
+    'rcarriga/nvim-dap-ui',
+    dependencies = {'mfussenegger/nvim-dap'}
   }
 }
 
