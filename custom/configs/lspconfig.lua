@@ -1,3 +1,4 @@
+local vim = vim
 local lspconfig = require("lspconfig")
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
@@ -37,6 +38,34 @@ lspconfig.svelte.setup {
 		}
 	end,
 }
+
+lspconfig.denols.setup {
+	on_attach = function(client, bufnr)
+		-- Disable tsserver for Deno projects
+		if client.name == "tsserver" then
+			client.stop()
+		end
+		on_attach(client, bufnr)
+	end,
+	capabilities = capabilities,
+	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+	init_options = {
+		lint = true,
+		unstable = true,
+	},
+}
+
+lspconfig.tsserver.setup {
+	on_attach = function(client, bufnr)
+		if lspconfig.util.root_pattern("deno.json", "deno.jsonc")(vim.fn.getcwd()) then
+			client.stop()
+		else
+			on_attach(client, bufnr)
+		end
+	end,
+	capabilities = capabilities,
+}
+
 -- if you just want default config for the servers then put them in a table
 local servers = { "html", "cssls", "clangd" }
 
