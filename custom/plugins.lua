@@ -4,6 +4,14 @@ local overrides = require("custom.configs.overrides")
 local plugins = {
   -- Override plugin definition options
   {
+    "github/copilot.vim",
+    config = function()
+      -- Enable Copilot on line 7
+      vim.api.nvim_set_keymap('n', '7', ':Copilot<CR>', { noremap = true, silent = true })
+    end,
+    event = "VimEnter" -- Ensure the plugin is loaded on VimEnter event
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- format & linting
@@ -50,26 +58,26 @@ local plugins = {
     ft = "rust",
     dependencies = "neovim/nvim-lspconfig",
     opts = function()
-      return require "custom.configs.rust-tools"
+      return require("custom.configs.rust-tools")
     end,
     config = function(_, opts)
-      require('rust-tools').setup(opts)
-    end
+      require("rust-tools").setup(opts)
+    end,
   },
   {
     "mfussenegger/nvim-dap",
     init = function()
       require("core.utils").load_mappings("dap")
-    end
+    end,
   },
   {
-    'saecki/crates.nvim',
+    "saecki/crates.nvim",
     ft = { "toml" },
     config = function(_, opts)
-      local crates = require('crates')
+      local crates = require("crates")
       crates.setup(opts)
-      require('cmp').setup.buffer({
-        sources = { { name = "crates" } }
+      require("cmp").setup.buffer({
+        sources = { { name = "crates" } },
       })
       crates.show()
       require("core.utils").load_mappings("crates")
@@ -80,14 +88,14 @@ local plugins = {
     ft = "rust",
     init = function()
       vim.g.rustfmt_autosave = 1
-    end
+    end,
   },
   {
     "theHamsta/nvim-dap-virtual-text",
     lazy = false,
     config = function(_, opts)
       require("nvim-dap-virtual-text").setup(opts)
-    end
+    end,
   },
   {
     "mhartington/formatter.nvim",
@@ -139,7 +147,7 @@ local plugins = {
     ft = "rust",
     dependencies = "neovim/nvim-lspconfig",
     config = function()
-      require("rust-tools").setup {
+      require("rust-tools").setup({
         tools = {
           autoSetHints = true,
           runnables = {
@@ -151,23 +159,23 @@ local plugins = {
             other_hints_prefix = "=> ",
           },
         },
-      }
+      })
     end,
   },
   {
     "mfussenegger/nvim-dap",
     init = function()
       require("core.utils").load_mappings("dap")
-    end
+    end,
   },
   {
-    'saecki/crates.nvim',
+    "saecki/crates.nvim",
     ft = { "toml" },
     config = function(_, opts)
-      local crates = require('crates')
+      local crates = require("crates")
       crates.setup(opts)
-      require('cmp').setup.buffer({
-        sources = { { name = "crates" } }
+      require("cmp").setup.buffer({
+        sources = { { name = "crates" } },
       })
       crates.show()
       require("core.utils").load_mappings("crates")
@@ -179,37 +187,37 @@ local plugins = {
     dependencies = "neovim/nvim-lspconfig",
     init = function()
       vim.g.rustfmt_autosave = 1
-    end
+    end,
   },
   {
     "theHamsta/nvim-dap-virtual-text",
     lazy = false,
     config = function(_, opts)
       require("nvim-dap-virtual-text").setup(opts)
-    end
+    end,
   },
   {
     "hrsh7th/nvim-cmp",
     opts = function()
-      local cmp = require "cmp"
-      local M = require "plugins.configs.cmp"
+      local cmp = require("cmp")
+      local M = require("plugins.configs.cmp")
       M.completion.completeopt = "menu,menuone,noselect"
-      M.mapping["<CR>"] = cmp.mapping.confirm {
+      M.mapping["<CR>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
         select = false,
-      }
+      })
       table.insert(M.sources, { name = "crates" })
       return M
     end,
   },
   {
-    'nvim-neotest/nvim-nio',
-    dependencies = {'mfussenegger/nvim-dap'}
+    "nvim-neotest/nvim-nio",
+    dependencies = { "mfussenegger/nvim-dap" },
   },
   {
-    'rcarriga/nvim-dap-ui',
-    dependencies = {'mfussenegger/nvim-dap'}
-  }
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap" },
+  },
 }
 
 return plugins

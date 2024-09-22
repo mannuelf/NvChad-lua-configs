@@ -1,7 +1,6 @@
 local lspconfig = require("lspconfig")
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
-local util = require("lspconfig/util")
 local null_ls = require "null-ls"
 
 local function organize_imports()
